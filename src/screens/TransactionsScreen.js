@@ -8,7 +8,7 @@ import {
 
 const TransactionsScreen = () => {
   const dispatch = useDispatch();
-  const transactions = useSelector(state => state);
+  const transactions = useSelector(state => state.otherData);
 
   React.useEffect(() => {
     dispatch(fetchTransactions());
