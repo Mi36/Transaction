@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import AppText from '../AppText';
+import PropTypes from 'prop-types';
+import {Colors} from '../../styles/colors';
 
 const Button = ({onPress, label, buttonColor, labelColor}) => {
   return (
@@ -15,9 +17,25 @@ const Button = ({onPress, label, buttonColor, labelColor}) => {
 
 export default Button;
 
+Button.propTypes = {
+  onPress: PropTypes.func,
+  label: PropTypes.string,
+  buttonColor: PropTypes.string,
+  labelColor: PropTypes.string,
+};
+
+Button.defaultProps = {
+  onPress: () => {},
+  label: 'Press here',
+  buttonColor: Colors.blue,
+  labelColor: Colors.white,
+};
+
 const styles = StyleSheet.create({
   main: {
-    padding: 10,
+    paddingVertical: 22,
     borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
