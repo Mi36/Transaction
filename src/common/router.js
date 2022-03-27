@@ -2,8 +2,11 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import BillPaymentsScreen from '../screens/BillPaymentsScreen';
+import CreditCardPaymentScreen from '../screens/CreditCardPaymentScreen';
 import TransactionDetailsScreen from '../screens/TransactionDetailsScreen';
 import TransactionsScreen from '../screens/TransactionsScreen';
+import TravelCardScreen from '../screens/TravelCardScreen';
 import {Colors} from '../styles/colors';
 
 const Tab = createMaterialTopTabNavigator();
@@ -13,12 +16,16 @@ export const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        lazy: true,
         tabBarLabelStyle: {fontSize: 12, textTransform: 'none'},
       }}>
-      <Tab.Screen name="Remittance" component={TransactionsScreen} />
-      <Tab.Screen name="Credit Card Payment" component={TransactionsScreen} />
-      <Tab.Screen name="Travel Card Reload" component={TransactionsScreen} />
-      <Tab.Screen name="Bill Payments" component={TransactionsScreen} />
+      <Tab.Screen name="Remittance" component={TransactionsScreen} la />
+      <Tab.Screen
+        name="Credit Card Payment"
+        component={CreditCardPaymentScreen}
+      />
+      <Tab.Screen name="Travel Card Reload" component={TravelCardScreen} />
+      <Tab.Screen name="Bill Payments" component={BillPaymentsScreen} />
     </Tab.Navigator>
   );
 };
