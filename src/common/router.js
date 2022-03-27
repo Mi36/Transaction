@@ -12,20 +12,41 @@ import {Colors} from '../styles/colors';
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 
-export const Tabs = () => {
+export const TopTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
         lazy: true,
         tabBarLabelStyle: {fontSize: 12, textTransform: 'none'},
       }}>
-      <Tab.Screen name="Remittance" component={TransactionsScreen} la />
       <Tab.Screen
-        name="Credit Card Payment"
-        component={CreditCardPaymentScreen}
+        name="Remittance"
+        component={TransactionsScreen}
+        options={{
+          tabBarLabel: 'Remittance',
+        }}
       />
-      <Tab.Screen name="Travel Card Reload" component={TravelCardScreen} />
-      <Tab.Screen name="Bill Payments" component={BillPaymentsScreen} />
+      <Tab.Screen
+        name="CreditCardPayment"
+        component={CreditCardPaymentScreen}
+        options={{
+          tabBarLabel: 'Credit Card Payment',
+        }}
+      />
+      <Tab.Screen
+        name="TravelCardReload"
+        component={TravelCardScreen}
+        options={{
+          tabBarLabel: 'Travel Card Reload',
+        }}
+      />
+      <Tab.Screen
+        name="BillPayments"
+        component={BillPaymentsScreen}
+        options={{
+          tabBarLabel: 'Bill Payments',
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -46,7 +67,7 @@ const Router = () => {
         }}>
         <Stack.Screen
           name="TRANSACTION"
-          component={Tabs}
+          component={TopTabs}
           options={{
             title: 'Transaction History',
           }}
