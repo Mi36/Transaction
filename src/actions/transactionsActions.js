@@ -18,7 +18,7 @@ export const fetchTransactions = () => async dispatch => {
       mathod: 'get',
       url: BACKEND_URL,
     });
-    console.log('allTransactions', allTransactions);
+
     dispatch({
       type: FETCH_TRANSACTIONS_SUCCESS,
       payload: allTransactions?.data,
