@@ -9,9 +9,9 @@ export const TextVariants = {
   //XXL: 'xxlarge',
   //XL: 'xlarge',
   L: 'large',
-  //M: 'medium',
+  M: 'medium',
   Base: 'base',
-  //S: 'small',
+  S: 'small',
   XS: 'xsmall',
   // XXS: 'smallest',
 };
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   xsmall: {
-    fontSize: 12,
+    fontSize: 13,
   },
   smallest: {
     fontSize: 10,

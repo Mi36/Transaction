@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import {FlatList, View, ActivityIndicator} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   fetchTransactions,
@@ -8,32 +8,35 @@ import {
 } from '../actions/transactionsActions';
 import Loader from '../components/Loader';
 import TransactionItem from '../components/TransactionItem';
+import {Colors} from '../styles/colors';
 import {styles} from '../styles/trasactionScreen';
 
 const TransactionsScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const transactionsList = useSelector(state => state.transactionsList);
   const {transactions, loading} = transactionsList;
-  console.log(transactions);
 
   React.useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  const renderItem = ({item}) => (
+  const onNavigate = item => {
+    dispatch(resetTransactionDetails());
+    navigation.navigate('TRANSACTION_DETAILS', {
+      id: item.id,
+    });
+  };
+
+  const renderItem = ({item, index}) => (
     <TransactionItem
+      color={index % 2 === 0 ? Colors.grey : Colors.white}
       dateOfPayment={moment.unix(item.createdAt).format('YYYY-MM-DD')}
       transferType={item.transfer_type}
       receivingAmount={item.receiving_amount}
       name={item.name}
       bankName={item.bank_name}
       title={item.title}
-      onPress={() => {
-        dispatch(resetTransactionDetails());
-        navigation.navigate('TRANSACTION_DETAILS', {
-          id: item.id,
-        });
-      }}
+      onPress={() => onNavigate(item)}
     />
   );
 
@@ -42,7 +45,7 @@ const TransactionsScreen = ({navigation}) => {
   }
 
   return (
-    <View>
+    <View style={styles.main}>
       <FlatList
         data={transactions}
         renderItem={renderItem}

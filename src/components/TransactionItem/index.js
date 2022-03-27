@@ -1,7 +1,8 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
 import React from 'react';
-import AppText from '../AppText';
-import moment from 'moment';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Colors} from '../../styles/colors';
+import AppText, {TextVariants} from '../AppText';
 
 const TransactionItem = ({
   onPress,
@@ -10,28 +11,41 @@ const TransactionItem = ({
   receivingAmount,
   dateOfPayment,
   transferType,
+  color,
 }) => {
-  console.log(moment.unix(1635163948).format('LLLL'));
   return (
-    <TouchableOpacity style={styles.main} onPress={onPress} activeOpacity={0.8}>
-      <View style={{flex: 6, backgroundColor: 'red', flexDirection: 'row'}}>
-        <Image style={styles.image} source={require('../../assets/flag.png')} />
+    <TouchableOpacity
+      style={[styles.main, {backgroundColor: color}]}
+      onPress={onPress}
+      activeOpacity={0.8}>
+      <View style={styles.firstHalf}>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            source={require('../../assets/flag.png')}
+          />
+        </View>
         <View>
-          <AppText>{name}</AppText>
-          <AppText>{bankName}</AppText>
-
-          <AppText>{transferType}</AppText>
+          <AppText
+            variant={TextVariants.M}
+            color={Colors.blue}
+            style={styles.text}>
+            {name}
+          </AppText>
+          <AppText style={styles.text}>{bankName}</AppText>
+          <AppText variant={TextVariants.XS}>{transferType}</AppText>
         </View>
       </View>
-      <View style={{flex: 4, backgroundColor: 'green'}}>
-        <AppText>{receivingAmount} PKR</AppText>
-        <AppText>{dateOfPayment}</AppText>
+      <View style={styles.secondHalf}>
+        <AppText color={Colors.blue} style={styles.paddingBottom}>
+          {receivingAmount}
+          <Text style={styles.subscript}> PKR</Text>
+        </AppText>
+        <AppText variant={TextVariants.XS} style={styles.paddingBottom}>
+          {dateOfPayment}
+        </AppText>
         <Image
-          style={{
-            height: 20,
-            width: 20,
-            borderRadius: 10,
-          }}
+          style={styles.tickContainer}
           source={require('../../assets/tick.png')}
         />
       </View>
@@ -41,15 +55,63 @@ const TransactionItem = ({
 
 export default TransactionItem;
 
+TransactionItem.propTypes = {
+  name: PropTypes.string,
+  bankName: PropTypes.string,
+  receivingAmount: PropTypes.number,
+  dateOfPayment: PropTypes.string,
+  transferType: PropTypes.string,
+  color: PropTypes.string,
+  onPress: PropTypes.func,
+};
+
+TransactionItem.defaultProps = {
+  onPress: () => {},
+  name: 'Name',
+  bankName: 'Bank Name',
+  receivingAmount: 100,
+  dateOfPayment: 'Date',
+  transferType: 'transfer type',
+  color: Colors.white,
+};
+
 const styles = StyleSheet.create({
   main: {
-    height: 80,
     flexDirection: 'row',
-    backgroundColor: 'green',
+    padding: 8,
   },
   image: {
     height: 50,
     width: 50,
     borderRadius: 25,
+  },
+  text: {
+    textTransform: 'capitalize',
+    paddingBottom: 2,
+  },
+  firstHalf: {
+    flex: 7,
+    flexDirection: 'row',
+  },
+  secondHalf: {
+    flex: 3,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  tickContainer: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+  },
+  subscript: {
+    fontSize: 10,
+    lineHeight: 37,
+  },
+  paddingBottom: {
+    paddingBottom: 4,
   },
 });

@@ -72,8 +72,7 @@ export const transactionDetailsReducer = (
       };
     case RESET_TRANSACTION_DETAILS:
       return {
-        ...state,
-        loading: false,
+        loading: true,
         transactionDetails: {},
         error: null,
       };
