@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, {useEffect} from 'react';
-import {Image, ScrollView, View} from 'react-native';
+import {Image, ScrollView, View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchTransactionDetails} from '../actions/transactionsActions';
 import AppText, {TextVariants} from '../components/AppText';
@@ -89,28 +89,53 @@ const TransactionDetailsScreen = ({route}) => {
           Transaction Completed
         </AppText>
       </View>
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1, backgroundColor: 'green'}}>
-          <AppText>{receiving_amount} PKR</AppText>
+      <View
+        style={{
+          flexDirection: 'row',
+          backgroundColor: 'grey',
+          marginVertical: 25,
+        }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginVertical: 20,
+          }}>
+          <AppText variant={TextVariants.L} color={Colors.green}>
+            {receiving_amount} <Text style={styles.subscript}> PKR</Text>
+          </AppText>
           <AppText>Receiving amount</AppText>
         </View>
-        <View style={{width: 3, backgroundColor: 'red'}} />
-        <View style={{flex: 1}}>
-          <AppText>{paid_amount} AED</AppText>
+        <View style={{width: 1, backgroundColor: 'red', marginVertical: 5}} />
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginVertical: 20,
+          }}>
+          <AppText variant={TextVariants.L} color={Colors.red}>
+            {paid_amount} <Text style={styles.subscript}> AED</Text>
+          </AppText>
           <AppText>Total paid</AppText>
         </View>
       </View>
       <View style={styles.direction}>
-        <Button
-          label={'NEW TRANSACTION'}
-          labelColor={Colors.white}
-          buttonColor={Colors.blue}
-        />
-        <Button
-          label={'SEND RECEIPT'}
-          labelColor={Colors.grey_2}
-          buttonColor={Colors.grey}
-        />
+        <View style={{flex: 1, marginHorizontal: 5}}>
+          <Button
+            label={'NEW TRANSACTION'}
+            labelColor={Colors.white}
+            buttonColor={Colors.blue}
+          />
+        </View>
+        <View style={{flex: 1, marginHorizontal: 5}}>
+          <Button
+            label={'SEND RECEIPT'}
+            labelColor={Colors.grey_2}
+            buttonColor={Colors.grey}
+          />
+        </View>
       </View>
     </ScrollView>
   );

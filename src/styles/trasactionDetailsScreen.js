@@ -13,4 +13,9 @@ export const styles = StyleSheet.create({
   direction: {
     flexDirection: 'row',
   },
+  subscript: {
+    fontSize: 10,
+    lineHeight: 37,
+    color: Colors.black,
+  },
 });
