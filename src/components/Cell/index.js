@@ -1,20 +1,18 @@
-import {StyleSheet, View, Text} from 'react-native';
+import PropTypes from 'prop-types';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../styles/colors';
 import AppText, {TextVariants} from '../AppText';
-import PropTypes from 'prop-types';
 
 const Cell = ({label, value, valueColor}) => {
   return (
-    <View>
-      <View style={styles.main}>
-        <AppText style={styles.text} variant={TextVariants.XS}>
-          {label}
-        </AppText>
-        <AppText style={styles.text} color={valueColor}>
-          {value}
-        </AppText>
-      </View>
+    <View style={styles.main}>
+      <AppText style={styles.text} variant={TextVariants.XS}>
+        {label}
+      </AppText>
+      <AppText style={styles.text} color={valueColor}>
+        {value}
+      </AppText>
     </View>
   );
 };
@@ -35,6 +33,7 @@ Cell.defaultProps = {
 
 const styles = StyleSheet.create({
   main: {
+    flex: 1,
     borderWidth: 1,
     borderColor: Colors.grey,
     padding: 5,
