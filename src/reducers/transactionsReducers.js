@@ -5,6 +5,7 @@ import {
   FETCH_TRANSACTION_DETAILS_FAIL,
   FETCH_TRANSACTION_DETAILS_REQUEST,
   FETCH_TRANSACTION_DETAILS_SUCCESS,
+  RESET_TRANSACTION_DETAILS,
 } from '../constants/transactionsConstants';
 
 export const transactionsReducer = (
@@ -40,6 +41,7 @@ export const transactionsReducer = (
       return {...state};
   }
 };
+
 export const transactionDetailsReducer = (
   state = {
     transactionDetails: {},
@@ -67,6 +69,13 @@ export const transactionDetailsReducer = (
         loading: false,
         transactionDetails: {},
         error: action.payload,
+      };
+    case RESET_TRANSACTION_DETAILS:
+      return {
+        ...state,
+        loading: false,
+        transactionDetails: {},
+        error: null,
       };
 
     default:

@@ -7,6 +7,7 @@ import {
   FETCH_TRANSACTION_DETAILS_FAIL,
   FETCH_TRANSACTION_DETAILS_REQUEST,
   FETCH_TRANSACTION_DETAILS_SUCCESS,
+  RESET_TRANSACTION_DETAILS,
 } from '../constants/transactionsConstants';
 
 export const fetchTransactions = () => async dispatch => {
@@ -18,7 +19,6 @@ export const fetchTransactions = () => async dispatch => {
       mathod: 'get',
       url: BACKEND_URL,
     });
-
     dispatch({
       type: FETCH_TRANSACTIONS_SUCCESS,
       payload: allTransactions?.data,
@@ -61,4 +61,10 @@ export const fetchTransactionDetails = id => async dispatch => {
       payload: message,
     });
   }
+};
+
+export const resetTransactionDetails = () => dispatch => {
+  dispatch({
+    type: RESET_TRANSACTION_DETAILS,
+  });
 };
