@@ -2,6 +2,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import Header from '../components/Header';
 import BillPaymentsScreen from '../screens/BillPaymentsScreen';
 import CreditCardPaymentScreen from '../screens/CreditCardPaymentScreen';
 import TransactionDetailsScreen from '../screens/TransactionDetailsScreen';
@@ -14,40 +15,44 @@ const Stack = createNativeStackNavigator();
 
 export const TopTabs = () => {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        lazy: true,
-        tabBarLabelStyle: {fontSize: 12, textTransform: 'none'},
-      }}>
-      <Tab.Screen
-        name="Remittance"
-        component={TransactionsScreen}
-        options={{
-          tabBarLabel: 'Remittance',
-        }}
-      />
-      <Tab.Screen
-        name="CreditCardPayment"
-        component={CreditCardPaymentScreen}
-        options={{
-          tabBarLabel: 'Credit Card Payment',
-        }}
-      />
-      <Tab.Screen
-        name="TravelCardReload"
-        component={TravelCardScreen}
-        options={{
-          tabBarLabel: 'Travel Card Reload',
-        }}
-      />
-      <Tab.Screen
-        name="BillPayments"
-        component={BillPaymentsScreen}
-        options={{
-          tabBarLabel: 'Bill Payments',
-        }}
-      />
-    </Tab.Navigator>
+    <>
+      <Header label={'Transaction History'} />
+      <Tab.Navigator
+        topBar={() => {}}
+        screenOptions={{
+          lazy: true,
+          tabBarLabelStyle: {fontSize: 12, textTransform: 'none'},
+        }}>
+        <Tab.Screen
+          name="Remittance"
+          component={TransactionsScreen}
+          options={{
+            tabBarLabel: 'Remittance',
+          }}
+        />
+        <Tab.Screen
+          name="CreditCardPayment"
+          component={CreditCardPaymentScreen}
+          options={{
+            tabBarLabel: 'Credit Card Payment',
+          }}
+        />
+        <Tab.Screen
+          name="TravelCardReload"
+          component={TravelCardScreen}
+          options={{
+            tabBarLabel: 'Travel Card Reload',
+          }}
+        />
+        <Tab.Screen
+          name="BillPayments"
+          component={BillPaymentsScreen}
+          options={{
+            tabBarLabel: 'Bill Payments',
+          }}
+        />
+      </Tab.Navigator>
+    </>
   );
 };
 
@@ -69,7 +74,7 @@ const Router = () => {
           name="TRANSACTION"
           component={TopTabs}
           options={{
-            title: 'Transaction History',
+            headerShown: false,
           }}
         />
         <Stack.Screen
