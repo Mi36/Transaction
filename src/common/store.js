@@ -4,6 +4,7 @@ import {
   transactionDetailsReducer,
   transactionsReducer,
 } from '../reducers/transactionsReducers';
+
 const rootReducer = combineReducers({
   transactionsList: transactionsReducer,
   currentTransaction: transactionDetailsReducer,

@@ -18,7 +18,6 @@ export const TopTabs = () => {
     <>
       <Header label={'Transaction History'} />
       <Tab.Navigator
-        topBar={() => {}}
         screenOptions={{
           lazy: true,
           tabBarLabelStyle: {fontSize: 12, textTransform: 'none'},
